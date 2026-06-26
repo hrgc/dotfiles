@@ -8,8 +8,6 @@ set undolevels=100
 set vimhelp
 set norunexec
 
-colorscheme onedark
-
 set timefmt=%y/%m/%d\ %H:%M
 
 set wildmenu
