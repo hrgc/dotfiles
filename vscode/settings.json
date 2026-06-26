@@ -1,0 +1,24 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 17,
+    "editor.lineNumbers": "relative",
+    "workbench.colorTheme": "Tokyo Night Light",
+    "editor.fontFamily": "Cica",
+    "vscode-neovim.compositeKeys": {
+        "jj": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    "explorer.confirmDelete": false,
+    "terminal.integrated.fontSize": 17,
+    "chat.editor.fontSize": 15,
+    "chat.fontSize": 14,
+    "claudeCode.preferredLocation": "panel",
+    "github.copilot.enable": {
+        "*": false
+    },
+    "[lua]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+}

@@ -1,0 +1,8 @@
+# 手動クローンの残骸（nvim-lspconfig は lazy.nvim 管理のため不要）
+nvim/pack/
+
+# nushell の個人操作履歴
+nushell/history.txt
+
+# その他のローカル状態
+*.bak
