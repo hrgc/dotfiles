@@ -18,3 +18,15 @@ $env.config = {
 # （alias 等のパース時構文も正しく取り込まれる）。
 const os_config = if $nu.os-info.name == "windows" { "windows.nu" } else { "linux.nu" }
 source $os_config
+
+# vifm 終了時に、最後に開いていたディレクトリへ cd する。
+# `--choose-dir` で終了時のディレクトリを一時ファイルに書き出させて読み取る。
+def --env vifm [...args] {
+  let tmp = (mktemp -t vifm-dir.XXXXXX)
+  ^vifm --choose-dir $tmp ...$args
+  let dir = (open --raw $tmp | str trim)
+  rm -f $tmp
+  if ($dir | is-not-empty) and ($dir | path exists) {
+    cd $dir
+  }
+}
