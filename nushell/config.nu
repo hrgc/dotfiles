@@ -21,8 +21,11 @@ source $os_config
 
 # vifm 終了時に、最後に開いていたディレクトリへ cd する。
 # `--choose-dir` で終了時のディレクトリを一時ファイルに書き出させて読み取る。
+# 引数なしのときは左ペインをカレントディレクトリ・アクティブにし、
+# 右ペインは前回のディレクトリ（vifminfo の savedirs）を復元する。
 def --env vifm [...args] {
   let tmp = (mktemp -t vifm-dir.XXXXXX)
+  let args = if ($args | is-empty) { [$env.PWD '-c' 'wincmd h'] } else { $args }
   ^vifm --choose-dir $tmp ...$args
   let dir = (open --raw $tmp | str trim)
   rm -f $tmp
