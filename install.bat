@@ -9,6 +9,19 @@ rem Repository root (directory of this script, without trailing backslash)
 set "DOTFILES=%~dp0"
 set "DOTFILES=%DOTFILES:~0,-1%"
 
+call :main
+set "rc=%errorlevel%"
+
+rem Pause only when double-clicked, so the window does not close before the
+rem result can be read. Explorer runs  cmd.exe /c ""<path>" "  (note the
+rem trailing space), while cmd/pwsh/powershell never leave one.
+setlocal EnableDelayedExpansion
+set cl=!cmdcmdline:"=!
+if "!cl:~-1!"==" " pause
+endlocal
+exit /b %rc%
+
+:main
 rem Creating symlinks requires Developer Mode or administrator rights
 net session >nul 2>&1 && goto :can_symlink
 reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /v AllowDevelopmentWithoutDevLicense 2>nul | "%SystemRoot%\System32\find.exe" "0x1" >nul && goto :can_symlink
