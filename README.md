@@ -35,6 +35,15 @@ bash ~/dotfiles/install.sh
 pwsh ~/dotfiles/install.ps1
 ```
 
+pwsh を導入できない環境では、cmd の `mklink` だけで同じ配置を行う `install.bat` を使う
+（コマンドプロンプトから実行する）。
+
+```bat
+%USERPROFILE%\dotfiles\install.bat
+```
+
+`install.bat` は ASCII のみで書くこと（UTF-8 の日本語を含むと cmd が行を誤解釈する）。
+
 スクリプトは既存の実体ファイル/フォルダがあれば `.bak` に退避してからリンクを張る。
 
 ## 配置先
